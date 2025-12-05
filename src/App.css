@@ -1,0 +1,113 @@
+/* From Uiverse.io by vikiWayne */ 
+.button {
+  padding: 10px 1px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+
+  transition: all 1000ms;
+  font-size: 15px;
+  position: relative;
+  overflow: hidden;
+  
+}
+
+button:hover {
+  color: #ffffff;
+  transform: scale(0.9);
+  
+  box-shadow: 4px 5px 17px -4px #f99925;
+}
+
+button::before {
+  content: "";
+  position: absolute;
+  left: -50px;
+  top: 0;
+  width: 0;
+  height: 100%;
+  background-color: #f78a05;
+  transform: skewX(45deg);
+  z-index: -1;
+  transition: width 1000ms;
+}
+
+button:hover::before {
+  width: 250%;
+}
+
+/* button banner */
+
+/* From Uiverse.io by Wendell47 */ 
+.buttonbanner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 30px;
+  border: 0;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10rem;
+  transition: all 0.02s;
+  font-weight: bold;
+  cursor: pointer;
+  color: rgb(255, 255, 255);
+  z-index: 0;
+
+}
+
+.buttonbanner:hover {
+  background: rgb(246, 246, 246);
+  color: rgb(255, 255, 255);
+  border: 2px solid #ffffff;
+}
+
+.buttonbanner:active {
+  transform: scale(0.97);
+}
+
+.hoverEffect {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.hoverEffect div {
+  background: rgb(222, 0, 75);
+  background: linear-gradient(
+    90deg,
+    rgba(105, 243, 0, 0.479) 0%,
+    rgb(210, 243, 25) 49%,
+    rgb(32, 57, 11) 100%
+  );
+  border-radius: 40rem;
+  width: 10rem;
+  height: 10rem;
+  transition: 0.4s;
+  filter: blur(20px);
+  animation: effect infinite 3s linear;
+  opacity: 0.5;
+}
+
+.buttonbanner:hover .hoverEffect div {
+  width: 8rem;
+  height: 8rem;
+}
+
+@keyframes effect {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
