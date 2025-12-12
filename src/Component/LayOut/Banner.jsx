@@ -29,19 +29,23 @@ const Banner = () => {
           A community-driven platform to share food, reduce waste, and help others.
           Discover available foods near you.
         </p>
+<motion.nav
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.95 }}
+>
+  <NavLink
+    to="/available-foods"
+    className="bg-green-600 px-6 py-3 rounded-xl text-lg font-semibold 
+                transition  duration-300 buttonbanner flex items-center gap-2"
+  >
+    <div className="hoverEffect">
+      <div></div>
+    </div>
+    Available Foods
+  </NavLink>
+</motion.nav>
 
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="bg-green-600 text-white px-6 py-3 rounded-xl text-lg font-semibold 
-          hover:bg-green-700 transition duration-300 buttonbanner"
-        >
-        <div className="hoverEffect">
-           <div></div>
-             </div>
 
-           <NavLink to="/available-foods"> Available Foods </NavLink>
-        </motion.button>
       </motion.div>
     </section>
   );
