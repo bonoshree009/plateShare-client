@@ -22,7 +22,7 @@ const AuthProvider = ({ children }) => {
   const [user, setuser] = useState(null);
   const [loading, setloading] = useState(true);
 
-  const createuser = (email, pass) => {
+  const createUser = (email, pass) => {
     setloading(true);
     return createUserWithEmailAndPassword(auth, email, pass);
   };
@@ -40,7 +40,7 @@ const AuthProvider = ({ children }) => {
     return updateProfile(auth.currentUser, updateddata);
   };
 
-  const google = () => {
+  const signinwithgoogle = () => {
     return signInWithPopup(auth, googleProvider);
   };
 
@@ -58,14 +58,14 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const authdata = {
-    createuser,
+    createUser,
     logOut,
     signIn,
     updateuser,
     loading,
     user,
     setuser,
-    google,
+    signinwithgoogle,
   };
 
   return (

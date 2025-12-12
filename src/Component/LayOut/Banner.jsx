@@ -36,7 +36,7 @@ const Banner = () => {
   <NavLink
     to="/available-foods"
     className="bg-green-600 px-6 py-3 rounded-xl text-lg font-semibold 
-                transition  duration-300 buttonbanner flex items-center gap-2"
+                transition  duration-300 buttonbanner buttonin flex items-center gap-2"
   >
     <div className="hoverEffect">
       <div></div>

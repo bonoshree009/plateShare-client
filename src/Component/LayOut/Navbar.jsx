@@ -18,9 +18,7 @@ const Navbar = () => {
 
       {user && (
         <> 
-           <li><NavLink to="/add-food" className="hover:text-orange-500">Add Food </NavLink> </li>
-           <li> <NavLink to="/manage-my-foods" className="hover:text-orange-500"> Manage My Foods </NavLink></li>
-          <li><NavLink to="/my-requests" className="hover:text-orange-500"> My Food Requests</NavLink> </li>
+          
         </>
       )}
     </>
@@ -57,7 +55,11 @@ const Navbar = () => {
                   <p className="font-semibold text-center border-b pb-2">
                     {user.displayName}
                   </p>
-
+                  <ul className="list-none">
+                   <li className="decoration"><NavLink to="/add-food" className="hover:text-orange-500">Add Food </NavLink> </li>
+           <li> <NavLink to="/manage-my-foods" className="hover:text-orange-500"> Manage My Foods </NavLink></li>
+          <li><NavLink to="/my-requests" className="hover:text-orange-500"> My Food Requests</NavLink> </li>
+                   </ul>
                   <button onClick={logOut} className="mt-3 px-3 py-2 bg-red-500 text-white w-full rounded-lg hover:bg-red-600" >
                     Logout
                   </button>
@@ -88,13 +90,18 @@ const Navbar = () => {
             >
               Login
             </Link>
-          ) : (
-            <button
-              onClick={logOut}
-              className="block w-full px-4 py-2 bg-red-500 text-white rounded-lg mt-4 hover:bg-red-600"
-            >
+          ) : (<>
+
+           <li><NavLink to="/add-food" className="hover:text-orange-500">Add Food </NavLink> </li>
+           <li> <NavLink to="/manage-my-foods" className="hover:text-orange-500"> Manage My Foods </NavLink></li>
+          <li><NavLink to="/my-requests" className="hover:text-orange-500"> My Food Requests</NavLink> </li>
+            <button onClick={logOut} className="block w-full px-4 py-2 bg-red-500 text-white rounded-lg mt-4 hover:bg-red-600">
               Logout
             </button>
+
+            </>
+
+            
           )}
         </ul>
       )}

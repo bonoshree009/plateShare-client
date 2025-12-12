@@ -1,5 +1,5 @@
 /* From Uiverse.io by vikiWayne */ 
-.button {
+.buttonin {
   padding: 10px 1px;
   border: none;
   border-radius: 5px;
@@ -13,14 +13,14 @@
   
 }
 
-button:hover {
+.buttonin:hover {
   color: #ffffff;
   transform: scale(0.9);
   
   box-shadow: 4px 5px 17px -4px #f99925;
 }
 
-button::before {
+.buttonin::before {
   content: "";
   position: absolute;
   left: -50px;
@@ -113,7 +113,7 @@ button:hover::before {
 /* mission card */
 
 /* From Uiverse.io by dylanharriscameron */ 
-.card {
+.cardin {
   position: relative;
   width: 200px;
   height: 250px;

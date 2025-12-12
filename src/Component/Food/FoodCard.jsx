@@ -20,7 +20,7 @@ const FoodCard = ({ food }) => {
       </p>
 
       <button
-        className="w-full text-white py-2 bg-green-600 rounded-lg font-semibold button"
+        className="w-full text-white py-2 bg-green-600 rounded-lg font-semibold button buttonin"
       >
         View Details
       </button>
