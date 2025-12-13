@@ -51,7 +51,7 @@ const Navbar = () => {
               />
 
               {dropdown && (
-                <div className="absolute right-0 mt-3 bg-white shadow-lg rounded-lg p-3 w-40">
+                <div className="absolute right-0 mt-3 bg-white shadow-lg rounded-lg p-3 w-40 z-50">
                   <p className="font-semibold text-center border-b pb-2">
                     {user.displayName}
                   </p>

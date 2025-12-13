@@ -1,16 +1,20 @@
 import React, { useContext, useState } from "react";
-
 import { updateProfile } from "firebase/auth";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import toast from "react-hot-toast";
 import { AuthContext } from "../Context/AuthProvider";
 
 const Register = () => {
   const { createUser, signinwithgoogle } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  const redirectPath = location.state?.from?.pathname || "/";
 
   const [error, setError] = useState("");
 
+  // ------------------------------
+  // Normal Registration
+  // ------------------------------
   const handleRegister = (e) => {
     e.preventDefault();
 
@@ -21,9 +25,9 @@ const Register = () => {
 
     setError("");
 
-    // ============================
+    // ------------------------------
     // PASSWORD VALIDATION
-    // ============================
+    // ------------------------------
     if (!/[A-Z]/.test(password)) {
       setError("Password must contain at least one Uppercase letter");
       return;
@@ -38,55 +42,54 @@ const Register = () => {
     }
 
     createUser(email, password)
-      .then((result) => {
-        const user = result.user;
-
-      
-        updateProfile(user, {
-          displayName: name,
-          photoURL: photo,
-        });
-
-        toast.success("Registration Successful!");
-      
-
-        navigate("/");
-
-        // OPTIONAL: Save to database
-        fetch("http://localhost:3000/users", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name,
-            email,
-            image: photo,
-          }),
-        });
-      })
-      .catch((err) => {
-        toast.error(err.message);
-      });
+  .then((result) => {
+    const user = result.user;
+    // update profile
+    return updateProfile(user, { displayName: name, photoURL: photo }).then(() => user);
+  })
+  .then((user) => {
+    // save to DB
+    return fetch("http://localhost:2000/users", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, image: photo }),
+    });
+  })
+  .then((res) => res.json())
+  .then(() => {
+    // show toast AFTER everything is done
+    toast.success("Registration Successful!");
+    navigate(redirectPath);
+  })
+  .catch((err) => {
+    console.log(err)
+    toast.error(err.message)
+  });
   };
 
+  // ------------------------------
+  // Google Login
+  // ------------------------------
   const handleGoogle = () => {
     signinwithgoogle()
       .then((result) => {
-        toast.success("Google Login Successful!");
-
         const newuser = {
           name: result.user.displayName,
           email: result.user.email,
           image: result.user.photoURL,
         };
 
-        return fetch("http://localhost:3000/users", {
+        fetch("http://localhost:3000/users", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(newuser),
-        });
+        })
+          .then((res) => res.json())
+          .then(() => {
+            toast.success("Google Login Successful!");
+            navigate(redirectPath);
+          });
       })
-      .then((res) => res.json())
-      .then((data) => console.log("Saved Google User:", data))
       .catch((err) => toast.error(err.message));
   };
 
@@ -115,7 +118,6 @@ const Register = () => {
           <button className="btn btn-neutral w-full mt-4">Register</button>
         </form>
 
-        {/* Google Login Button */}
         <button
           onClick={handleGoogle}
           className="btn bg-white text-black border mt-4"

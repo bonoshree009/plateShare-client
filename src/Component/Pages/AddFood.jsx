@@ -1,51 +1,69 @@
-import React, { useContext } from 'react';
-import { useForm } from 'react-hook-form';
-import { AuthContext } from '../context/AuthContext';
-import imgbbService from '../services/imgbbService';
-import foodsApi from '../api/foodsApi';
-import { toast } from 'react-toastify';
+import React, { useContext, useState } from "react";
+import toast from "react-hot-toast";
+import { AuthContext } from "../Context/AuthProvider";
 
-export default function AddFood() {
+const AddFood = () => {
   const { user } = useContext(AuthContext);
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const [loading, setLoading] = useState(false);
 
-  const onSubmit = async (data) => {
+  const handleAddFood = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const form = e.target;
+
+    const food = {
+      food_name: form.foodName.value,
+      food_image: form.foodImage.value,
+      quantity: form.quantity.value,
+      location: form.location.value,
+      expire_date: form.expireDate.value,
+      notes: form.notes.value,
+
+      // auto-filled
+      donator_name: user.displayName,
+      donator_email: user.email,
+      donator_image: user.photoURL,
+
+      food_status: "Available",
+      created_at: new Date(),
+    };
+
     try {
-      const file = data.image[0];
-      const imageUrl = await imgbbService.upload(file);
-      const payload = {
-        name: data.name,
-        image: imageUrl,
-        quantity_number: Number(data.quantity_number),
-        quantity_text: `Serves ${data.quantity_number} people`,
-        location: data.location,
-        expireDate: data.expireDate,
-        notes: data.notes,
-        donatorName: user.displayName,
-        donatorEmail: user.email,
-        donatorPhoto: user.photoURL,
-        food_status: 'Available',
-        createdAt: new Date().toISOString()
-      };
-      await foodsApi.createFood(payload);
-      toast.success('Food posted successfully');
-    } catch (err) {
-      toast.error('Failed to add food');
+      const res = await fetch("http://localhost:2000/myfoods", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(food),
+      });
+
+      if (!res.ok) throw new Error();
+      toast.success("Food added successfully!");
+      form.reset();
+    } catch {
+      toast.error("Failed to add food");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h2 className="text-2xl font-semibold mb-4">Add Food</h2>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        <input {...register('name', { required: true })} placeholder="Food Name" />
-        <input type="file" {...register('image', { required: true })} />
-        <input type="number" {...register('quantity_number', { required: true, min: 1 })} placeholder="Quantity (number of people)" />
-        <input {...register('location', { required: true })} placeholder="Pickup Location" />
-        <input type="date" {...register('expireDate', { required: true })} />
-        <textarea {...register('notes')} placeholder="Additional notes" />
-        <button type="submit">Post Food</button>
+    <div className="max-w-md mx-auto mt-10 p-6 bg-white shadow rounded">
+      <h2 className="text-xl font-bold mb-4 text-center">Add Food</h2>
+
+      <form onSubmit={handleAddFood} className="space-y-3">
+        <input name="foodName" placeholder="Food Name" className="input w-full" required />
+        <input name="foodImage" placeholder="Food Image URL (imgbb)" className="input w-full" required />
+        <input name="quantity" placeholder="Food Quantity" className="input w-full" required />
+        <input name="location" placeholder="Pickup Location" className="input w-full" required />
+        <input type="date" name="expireDate" className="input w-full" required />
+        <textarea name="notes" placeholder="Additional Notes" className="input w-full h-24" />
+
+        <button className="btn btn-neutral w-full" disabled={loading}>
+          {loading ? "Adding..." : "Add Food"}
+        </button>
       </form>
     </div>
   );
-}
+};
+
+export default AddFood;
