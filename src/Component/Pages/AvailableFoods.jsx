@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import FoodCard from "../Food/FoodCard";
-//import FoodCard from "../Components/FoodCard";
+
 
 const AvailableFoods = () => {
   const [foods, setFoods] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:2000/foods") // your MongoDB API
+    fetch("http://localhost:2000/foods") 
       .then((res) => res.json())
       .then((data) => setFoods(data));
   }, []);

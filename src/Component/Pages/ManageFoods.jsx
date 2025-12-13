@@ -2,11 +2,19 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Context/AuthProvider";
 import Swal from "sweetalert2";
 import { Link } from "react-router";
+import Loading from "../Loading/Loading"
 
 const ManageFoods = () => {
-  const { user } = useContext(AuthContext);
+  const { user,loading } = useContext(AuthContext);
   const [foods, setFoods] = useState([]);
-
+   
+   if (loading) {
+  return (
+    <div className="w-full shadow-md bg-white p-4 flex justify-center items-center">
+     <Loading></Loading>
+    </div>
+  );
+}
   useEffect(() => {
     fetch(`http://localhost:2000/myfoods?email=${user.email}`)
       .then(res => res.json())
@@ -33,9 +41,9 @@ const ManageFoods = () => {
 
   return (
     <div className="max-w-5xl mx-auto mt-10">
-      <h2 className="text-2xl font-bold mb-4">Manage My Foods</h2>
+      <h2 className="text-2xl  text-center font-bold mb-4 text-orange-600">Manage My Foods</h2>
 
-      <table className="table w-full">
+      <table className="table w-full my-11">
         <thead>
           <tr>
             <th>Name</th>

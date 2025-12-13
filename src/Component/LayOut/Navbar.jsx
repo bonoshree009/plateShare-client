@@ -3,13 +3,21 @@ import { useContext, useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { AuthContext } from "../Context/AuthProvider";
 import logo from '../../assets/food-sharing-nutrition-charity-logo-260nw-2335087999.webp'
+import Loading from "../Loading/Loading"
 
 
 const Navbar = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut,loading } = useContext(AuthContext);
 
   const [open, setOpen] = useState(false);
   const [dropdown, setDropdown] = useState(false);
+  if (loading) {
+  return (
+    <div className="w-full shadow-md bg-white p-4 flex justify-center items-center">
+     <Loading></Loading>
+    </div>
+  );
+}
 
   const navLinks = (
     <>

@@ -12,7 +12,7 @@ const LatestFood = () => {
                   <div>
            <h1 className='text-3xl  font-bold py-5 text-center text-gray-700'>Share <span className='text-orange-500'>Food</span> </h1>
            <div className="px-4 py-4">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-3 md:grid-cols-3 gap-6">
            
              {
                 foodproducts.map(food => ( <FoodCard key={food._id} food={food}></FoodCard> ))

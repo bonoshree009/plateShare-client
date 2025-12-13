@@ -9,11 +9,12 @@ import PrivateRoute from "../Auth/PrivateRoute";
 import AddFood from '../Pages/AddFood'
 import ManageFoods from "../Pages/ManageFoods";
 import UpdateFood from "../Pages/UpdateFood";
+import NotFound from "../Pages/NotFound";
+import FoodDetails from "../Pages/FoodDetails";
 
 export const router = createBrowserRouter([
   {
-    path: "/",
-    Component: Root,
+    path: "/",Component: Root,
     children: [
       { index: true, Component: Home },
       { path: "/available-foods", element: <AvailableFoods></AvailableFoods> },
@@ -21,8 +22,10 @@ export const router = createBrowserRouter([
       {path:"/Login",Component:Login},
       {path:'/add-food',element:( <PrivateRoute><AddFood></AddFood></PrivateRoute>)},
       {path:'/manage-my-foods',element:(<PrivateRoute><ManageFoods></ManageFoods></PrivateRoute>)},
-      {path: "/update-food/:id",element: ( <PrivateRoute><UpdateFood /></PrivateRoute>  )}
+      {path: "/update-food/:id",element: ( <PrivateRoute><UpdateFood /></PrivateRoute>  )},
+      { path: "/food/:id", element: <PrivateRoute><FoodDetails /></PrivateRoute> }
 
 ]
-  }
+  },
+   { path:"*", Component: NotFound}
 ]);
