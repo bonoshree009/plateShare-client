@@ -66,7 +66,7 @@ const Navbar = () => {
                   <ul className="list-none">
                    <li className="decoration"><NavLink to="/add-food" className="hover:text-orange-500">Add Food </NavLink> </li>
            <li> <NavLink to="/manage-my-foods" className="hover:text-orange-500"> Manage My Foods </NavLink></li>
-          <li><NavLink to="/my-requests" className="hover:text-orange-500"> My Food Requests</NavLink> </li>
+          <li><NavLink to="/foodRequests" className="hover:text-orange-500"> My Food Requests</NavLink> </li>
                    </ul>
                   <button onClick={logOut} className="mt-3 px-3 py-2 bg-red-500 text-white w-full rounded-lg hover:bg-red-600" >
                     Logout

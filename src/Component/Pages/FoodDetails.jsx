@@ -29,6 +29,7 @@ const FoodDetails = () => {
   };
 
   return (
+    <div>
     <div className="max-w-4xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
       <img src={food.food_image} alt={food.food_name} className="w-full h-64 object-cover rounded-lg mb-4" />
       <h2 className="text-3xl font-bold mb-3">{food.food_name}</h2>
@@ -49,6 +50,28 @@ const FoodDetails = () => {
         Request Food
       </button>
     </div>
+
+
+ {user && user.email !== food.ownerEmail && (
+  <button onClick={() => setShowModal(true)}>Request Food</button>
+)}
+{showModal && (
+  <FoodRequestModal
+    food={food}
+    user={user}
+    onClose={() => setShowModal(false)}
+    refreshRequests={fetchRequests} // optional if table below
+  />
+)}
+
+// Only food owner sees the table
+{user && user.email === food.ownerEmail && (
+  <FoodRequestsTable foodId={food._id} />
+)}
+</div>
+
+
+
   );
 };
 
