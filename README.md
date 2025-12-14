@@ -1,16 +1,41 @@
-# React + Vite
+# 🍽️ PlateShare – Food Sharing Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🔗 **Live Website:** https://your-live-site-url-here.com
 
-Currently, two official plugins are available:
+PlateShare is a food-sharing web platform where people can donate surplus food
+and others can request food easily. The goal is to reduce food waste and help
+those in need through a simple and user-friendly system.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🌟 Key Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Users can browse available food items with detailed information.
+- Logged-in users can request food using a simple request system.
+- Each user can view **only their own requested foods** in a dedicated table.
+- Food donors can manage and track requests for their donated food.
+- Secure authentication system using Firebase authentication.
+- Clean, responsive UI built with React and Tailwind CSS.
+- Real-time data handling using MongoDB and Express API.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Technologies Used
+
+- React
+- React Router
+- Tailwind CSS
+- Firebase Authentication
+- Node.js & Express
+- MongoDB
+
+---
+
+## 📌 Purpose
+
+PlateShare aims to create social impact by connecting food donors with people
+who need food, ensuring transparency, simplicity, and ease of use.
+
+---
+
+© 2025 PlateShare. All rights reserved.
