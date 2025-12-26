@@ -16,7 +16,7 @@ const ManageFoods = () => {
   );
 }
   useEffect(() => {
-    fetch(`http://localhost:2000/myfoods?email=${user.email}`)
+    fetch(`https://plateshare-server-zeta.vercel.app/myfoods?email=${user.email}`)
       .then(res => res.json())
       .then(data => setFoods(data));
   }, [user.email]);
@@ -28,7 +28,7 @@ const ManageFoods = () => {
       showCancelButton: true,
     }).then(result => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:2000/myfoods/${id}`, {
+        fetch(`https://plateshare-server-zeta.vercel.app/myfoods/${id}`, {
           method: "DELETE",
         })
           .then(() => {

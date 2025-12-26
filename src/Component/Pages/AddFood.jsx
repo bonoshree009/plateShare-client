@@ -30,7 +30,7 @@ const AddFood = () => {
     };
 
     try {
-      const res = await fetch("http://localhost:2000/myfoods", {
+      const res = await fetch("https://plateshare-server-zeta.vercel.app/myfoods", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(food),

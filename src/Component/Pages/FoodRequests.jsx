@@ -24,7 +24,7 @@ const FoodRequest = () => {
       createdAt: new Date(),
     };
 
-    const res = await fetch("http://localhost:2000/food-requests", {
+    const res = await fetch("https://plateshare-server-zeta.vercel.app/food-requests", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(requestData),

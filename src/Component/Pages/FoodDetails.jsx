@@ -13,7 +13,7 @@ const FoodDetails = () => {
   const [showMyRequests, setShowMyRequests] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:2000/foods/${id}`)
+    fetch(`https://plateshare-server-zeta.vercel.app/foods/${id}`)
       .then(res => {
         if (!res.ok) throw new Error("Food not found");
         return res.json();

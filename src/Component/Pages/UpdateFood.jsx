@@ -8,7 +8,7 @@ const UpdateFood = () => {
   const [food, setFood] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:2000/myfoods/${id}`)
+    fetch(`https://plateshare-server-zeta.vercel.app/myfoods/${id}`)
       .then(res => res.json())
       .then(data => setFood(data));
   }, [id]);
@@ -24,7 +24,7 @@ const UpdateFood = () => {
       notes: e.target.notes.value,
     };
 
-    fetch(`http://localhost:2000/myfoods/${id}`, {
+    fetch(`https://plateshare-server-zeta.vercel.app/myfoods/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedFood),

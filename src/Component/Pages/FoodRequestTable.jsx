@@ -8,7 +8,7 @@ const FoodRequestTable = () => {
   useEffect(() => {
     if (!user?.email) return;
 
-    fetch(`http://localhost:2000/food-requests?email=${user.email}`)
+    fetch(`https://plateshare-server-zeta.vercel.app/food-requests?email=${user.email}`)
       .then(res => res.json())
       .then(data => setRequests(data));
   }, [user]);

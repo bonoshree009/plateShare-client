@@ -6,7 +6,7 @@ const AvailableFoods = () => {
   const [foods, setFoods] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:2000/foods") 
+    fetch("https://plateshare-server-zeta.vercel.app/foods") 
       .then((res) => res.json())
       .then((data) => setFoods(data));
   }, []);

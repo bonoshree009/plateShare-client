@@ -49,7 +49,7 @@ const Register = () => {
   })
   .then((user) => {
     // save to DB
-    return fetch("http://localhost:2000/users", {
+    return fetch("https://plateshare-server-zeta.vercel.app/users", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name, email, image: photo }),
